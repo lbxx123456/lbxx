@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>欢迎来到Web实验室 - Welcome to the web lab</title>
+        <meta name="keywords" content="Web实验室,web lab">
+        <!-- font-awesome 图标字体 -->
+        <link href="/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css">
+        <!-- 实验室核心样式文件 -->
+        <link rel="stylesheet" href="index.css">
+    </head>
+    
+    <body>
+        <div style="display:none">
+            <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1279055756&web_id=1279055756"></script> 
+        </div>
+        <header class="header">
+            <!-- 动画展示区域 -->
+            <div id="victor-container">
+                <div id="victor-output"></div>
+            </div>
+            <div class="welcome">
+                <p>— 欢迎访问 —</p> 
+                <a id="a123" href="#"> Welcome! </a>
+                <div>网站已运行
+<span id="span_dt_dt" style='border:0px solid black;'></span>
+                    <SCRIPT language=javascript>
+                    <!--
+                     //document.write("");
+                    function show_date_time() {
+                        window.setTimeout("show_date_time()", 1000);
+                        BirthDay = new Date("10-10-2017");
+                        today = new Date();
+                        timeold = (today.getTime() - BirthDay.getTime());
+                        sectimeold = timeold / 1000
+                        secondsold = Math.floor(sectimeold);
+                        msPerDay = 24 * 60 * 60 * 1000
+                        e_daysold = timeold / msPerDay
+                        daysold = Math.floor(e_daysold);
+                        e_hrsold = (daysold - e_daysold) * -24;
+                        hrsold = Math.floor(e_hrsold);
+                        e_minsold = (hrsold - e_hrsold) * -60;
+                        minsold = Math.floor((hrsold - e_hrsold) * -60);
+                        seconds = Math.floor((minsold - e_minsold) * -60);
+                        span_dt_dt.innerHTML = daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒";
+                    }
+                    show_date_time();
+                     //-->
+                    </SCRIPT>
+                </div>
+            </div>
+            <!-- jq -->
+            <script src="jquery.min.js"></script>
+            <script src="vector.js"></script>
+            <script>
+            $(function () {
+
+                // 页面加载完毕后固定页头高度，防止在某些自动隐藏工具栏的移动浏览器上出现页面抖动现象
+                $(".header").height($(window).height());
+
+                // 初始化 传入dom id
+                var victor = new Victor("victor-container", "victor-output");
+                var theme = [
+   ["#002c4a", "#005584"],
+    ["#35ac03", "#3f4303"],
+    ["#ac0908", "#cd5726"],
+    ["#18bbff", "#00486b"]
+                ];
+                var color = theme[fRandomBy(0, 3)];
+                victor(color).set();
+
+                // 监听滚动变化
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() < 300) {
+                        $(".mk-uptop").removeClass("show");
+                    } else {
+                        $(".mk-uptop").addClass("show");
+                    }
+                });
+
+                // 返回顶部
+                $(".mk-uptop").click(function () {
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, "normal");
+                    return false;
+                });
+
+                // 烦人的 CNZZ，输出一大堆错误信息、、清除掉！	
+                console.clear();
+            });
+
+
+
+            /*******************************
+             * 函数名：生成指定范围的随机数
+             * 输入：  (under)下限   (over)上限
+             * 输出： 所需要的数值
+             * *****************************/
+            function fRandomBy(under, over) {
+                switch (arguments.length) {
+                case 1:
+                    return parseInt(Math.random() * under + 1);
+                case 2:
+                    return parseInt(Math.random() * (over - under + 1) + under);
+                default:
+                    return 0;
+                }
+            }
+            </script>
+        </header>
+    </body>
+
+</html>
